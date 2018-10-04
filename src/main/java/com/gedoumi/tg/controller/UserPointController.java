@@ -23,7 +23,7 @@ public class UserPointController {
     private UserService userService;
 
     /**
-     * 每日助力
+     * 每日积分助力
      *
      * @return ResponseEntity
      */
