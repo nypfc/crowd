@@ -1,4 +1,4 @@
-package com.gedoumi.tg.common.vo;
+package com.gedoumi.tg.dataobj.vo;
 
 import lombok.Data;
 
