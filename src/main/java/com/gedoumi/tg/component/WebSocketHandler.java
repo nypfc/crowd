@@ -1,4 +1,4 @@
-package com.gedoumi.extension.component;
+package com.gedoumi.tg.component;
 
 import com.google.common.collect.Maps;
 import org.springframework.stereotype.Component;

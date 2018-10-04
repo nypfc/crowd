@@ -1,4 +1,4 @@
-package com.gedoumi.extension.common.config;
+package com.gedoumi.tg.common.config;
 
 import com.alibaba.druid.filter.Filter;
 import com.alibaba.druid.filter.stat.StatFilter;
@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Druid连接池配置
+ *
  * @author Minced
  */
 @Configuration

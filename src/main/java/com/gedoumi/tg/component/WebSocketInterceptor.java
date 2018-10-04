@@ -1,4 +1,4 @@
-package com.gedoumi.extension.component;
+package com.gedoumi.tg.component;
 
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;

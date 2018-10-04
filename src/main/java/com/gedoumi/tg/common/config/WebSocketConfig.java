@@ -1,7 +1,7 @@
-package com.gedoumi.extension.common.config;
+package com.gedoumi.tg.common.config;
 
-import com.gedoumi.extension.component.WebSocketHandler;
-import com.gedoumi.extension.component.WebSocketInterceptor;
+import com.gedoumi.tg.component.WebSocketHandler;
+import com.gedoumi.tg.component.WebSocketInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;

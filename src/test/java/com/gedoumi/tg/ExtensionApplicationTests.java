@@ -1,4 +1,4 @@
-package com.gedoumi.extension;
+package com.gedoumi.tg;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
