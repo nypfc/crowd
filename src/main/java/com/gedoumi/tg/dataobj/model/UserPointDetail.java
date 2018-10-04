@@ -1,57 +1,41 @@
-package com.sample;
+package com.gedoumi.tg.dataobj.model;
 
+import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Entity;
+import java.util.Date;
+
+@Entity
+@DynamicInsert
+@DynamicUpdate
+@Data
 public class UserPointDetail {
 
-  private long id;
-  private long userId;
-  private long point;
-  private long type;
-  private java.sql.Timestamp createTime;
+    /**
+     * 积分详情ID
+     */
+    private Long id;
 
+    /**
+     * 用户ID
+     */
+    private Long userId;
 
-  public long getId() {
-    return id;
-  }
+    /**
+     * 变动的积分数量
+     */
+    private Long point;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    /**
+     * 变动类型，1：每日点赞，2：邀请好友
+     */
+    private Long type;
 
-
-  public long getUserId() {
-    return userId;
-  }
-
-  public void setUserId(long userId) {
-    this.userId = userId;
-  }
-
-
-  public long getPoint() {
-    return point;
-  }
-
-  public void setPoint(long point) {
-    this.point = point;
-  }
-
-
-  public long getType() {
-    return type;
-  }
-
-  public void setType(long type) {
-    this.type = type;
-  }
-
-
-  public java.sql.Timestamp getCreateTime() {
-    return createTime;
-  }
-
-  public void setCreateTime(java.sql.Timestamp createTime) {
-    this.createTime = createTime;
-  }
+    /**
+     * 产生时间
+     */
+    private Date createTime;
 
 }

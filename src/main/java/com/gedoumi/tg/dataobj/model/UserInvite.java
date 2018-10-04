@@ -1,27 +1,27 @@
-package com.sample;
+package com.gedoumi.tg.dataobj.model;
 
+import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+@DynamicInsert
+@DynamicUpdate
+@Data
 public class UserInvite {
 
-  private long registerId;
-  private long inviterId;
+    /**
+     * 注册者用户ID
+     */
+    @Id
+    private Long registerId;
 
-
-  public long getRegisterId() {
-    return registerId;
-  }
-
-  public void setRegisterId(long registerId) {
-    this.registerId = registerId;
-  }
-
-
-  public long getInviterId() {
-    return inviterId;
-  }
-
-  public void setInviterId(long inviterId) {
-    this.inviterId = inviterId;
-  }
+    /**
+     * 邀请人用户ID
+     */
+    private Long inviterId;
 
 }

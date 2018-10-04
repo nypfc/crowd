@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.gedoumi</groupId>
-    <artifactId>extension</artifactId>
+    <artifactId>tg</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>extension</name>
+    <name>tg</name>
     <description>推广项目</description>
 
     <parent>
