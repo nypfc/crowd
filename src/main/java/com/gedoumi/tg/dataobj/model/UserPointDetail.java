@@ -29,7 +29,7 @@ public class UserPointDetail {
     private Long point;
 
     /**
-     * 变动类型，1：每日点赞，2：邀请好友
+     * 变动类型，1：每日助力，2：邀请好友
      */
     private Long type;
 

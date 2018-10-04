@@ -10,6 +10,9 @@ import lombok.Getter;
 @Getter
 public enum CodeEnum {
 
+    SUCCESS(0, "请求成功"),
+    NO_AUTH_TOKEN(1, "为获取到Token"),
+    USER_NOT_EXIST(2, "用户不存在"),
     ;
 
     /**
