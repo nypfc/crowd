@@ -43,7 +43,7 @@ public class UserPointService {
      */
     @Transactional(rollbackFor = {Exception.class, RuntimeException.class})
     public void addPoint(User user) {
-        // 1.更新积分
+        // 1.更新用户积分
         long point = PointEnum.DAY.getPoint();
         user.setPoint(user.getPoint() + point);
         userDao.save(user);
@@ -70,7 +70,7 @@ public class UserPointService {
         userPointDetail.setType(PointEnum.DAY.getType());
         userPointDetailDao.save(userPointDetail);
 
-        // 4.增加总积分量
+        // 4.更新总积分量
         TotalPoint totalPoint = totalPointDao.findById(1L).orElseThrow(() -> new DataBaseException(CodeEnum.DB_ERROR, INTERNAL_SERVER_ERROR, "未查询到积分总量"));
         totalPoint.setTotalPoint(totalPoint.getTotalPoint() + point);
         totalPointDao.save(totalPoint);
