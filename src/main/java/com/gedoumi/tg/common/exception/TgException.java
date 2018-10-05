@@ -5,21 +5,21 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 未登录异常
+ * 普通异常
  *
  * @author Minced
  */
 @Getter
 @Setter
-public class LoginException extends RuntimeException {
+public class TgException extends RuntimeException {
 
     private CodeEnum codeEnum;
 
-    public LoginException() {
+    public TgException() {
         super();
     }
 
-    public LoginException(CodeEnum codeEnum) {
+    public TgException(CodeEnum codeEnum) {
         this.codeEnum = codeEnum;
     }
 

@@ -21,4 +21,10 @@ public class TotalPointDaoTest extends TgApplicationTests {
         totalPointDao.save(totalPoint);
     }
 
+    @Test
+    public void findOne() {
+        TotalPoint totalPoint = totalPointDao.findById(1L).orElseThrow(() -> new RuntimeException("我草泥马，为什么是空的"));
+        System.out.println(totalPoint);
+    }
+
 }

@@ -12,7 +12,8 @@ spring:
       timeBetweenEvictionRunsMillis: 60000  # 空闲连接检查的时间间隔
       minEvictableIdleTimeMillis: 300000  # 空闲连接最小空闲时间
   jackson:  # Jackson序列化配置
-    default-property-inclusion: non_empty
+    default-property-inclusion: non_null
+
 logging:  # 日志配置
   level:
-    com.gedoumi.extension.component.RequestInterceptor: debug
+    com.gedoumi.tg.component.RequestInterceptor: debug

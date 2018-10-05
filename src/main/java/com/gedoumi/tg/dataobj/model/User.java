@@ -49,6 +49,11 @@ public class User {
     private String avatar;
 
     /**
+     * 积分
+     */
+    private Long point;
+
+    /**
      * 注册时间
      */
     private Date registerTime;

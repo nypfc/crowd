@@ -5,6 +5,9 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
@@ -16,6 +19,8 @@ public class UserPointDetail {
     /**
      * 积分详情ID
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
@@ -31,7 +36,7 @@ public class UserPointDetail {
     /**
      * 变动类型，1：每日助力，2：邀请好友
      */
-    private Long type;
+    private Integer type;
 
     /**
      * 产生时间

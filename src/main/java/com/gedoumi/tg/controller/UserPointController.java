@@ -27,7 +27,7 @@ public class UserPointController {
      *
      * @return ResponseEntity
      */
-    @PostMapping("/addPoint")
+    @PostMapping("/point/add")
     public ResponseObject addPoint() {
         User user = userService.getUser();
         userPointService.addPoint(user);
