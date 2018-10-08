@@ -77,7 +77,7 @@ public class UserPointDetailService {
     }
 
     /**
-     * 获取用户积分明细集合
+     * 获取用户积分明细列表
      *
      * @param userId 用户ID
      * @return 积分明细集合

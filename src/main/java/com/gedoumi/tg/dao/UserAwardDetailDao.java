@@ -3,6 +3,8 @@ package com.gedoumi.tg.dao;
 import com.gedoumi.tg.dataobj.model.UserAwardDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 /**
  * 用户抽奖详情（明细）Dao
  *
@@ -18,5 +20,13 @@ public interface UserAwardDetailDao extends JpaRepository<UserAwardDetail, Long>
      * @return 查询结果数量
      */
     Integer countByUserIdAndAwardType(Long userId, Integer type);
+
+    /**
+     * 根据用户ID查询
+     *
+     * @param userId 用户ID
+     * @return 抽奖详情集合
+     */
+    List<UserAwardDetail> findByUserId(Long userId);
 
 }

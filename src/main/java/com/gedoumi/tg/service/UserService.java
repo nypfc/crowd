@@ -5,7 +5,6 @@ import com.gedoumi.tg.dao.UserDao;
 import com.gedoumi.tg.dataobj.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -40,16 +39,6 @@ public class UserService {
             throw new TgException(BAD_REQUEST, NO_LOGIN);
         }
         return user;
-    }
-
-    /**
-     * 插入/更新用户
-     * @param user 用户对象
-     * @return 插入/更新结果对象
-     */
-    @Transactional(rollbackFor = {Exception.class, RuntimeException.class})
-    public User save(User user) {
-        return userDao.save(user);
     }
 
 }

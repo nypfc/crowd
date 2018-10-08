@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+
 import static com.gedoumi.tg.common.constants.ResponseMessage.ALREADY_AWARDED;
 import static com.gedoumi.tg.common.constants.ResponseMessage.NOT_ENOUGH_POINT;
 import static com.gedoumi.tg.common.enums.TreasureTypeEnum.*;
@@ -69,6 +71,16 @@ public class UserAwardDetailService {
         awardDetail.setIsSuccess(success);
         userAwardDetailDao.save(awardDetail);
 
+    }
+
+    /**
+     * 获取用户抽奖详情列表
+     *
+     * @param userId 用户ID
+     * @return 用户抽奖详情集合
+     */
+    public List<UserAwardDetail> getUserAwardList(Long userId) {
+        return userAwardDetailDao.findByUserId(userId);
     }
 
 }

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * 奖品Dao
+ *
  * @author Minced
  */
 public interface AwardDao extends JpaRepository<Award, Long> {
