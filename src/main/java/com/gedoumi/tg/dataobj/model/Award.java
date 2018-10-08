@@ -8,39 +8,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
 
-@Entity
+/**
+ * 奖品
+ *
+ * @author Minced
+ */
+@Data
 @DynamicInsert
 @DynamicUpdate
-@Data
-public class UserPointDetail {
+@Entity
+public class Award {
 
-    /**
-     * 积分详情ID
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
-     * 用户ID
+     * 奖品类型
+     * 1:一号宝箱
+     * 2:二号宝箱
+     * 3:三号宝箱
+     * 4:四号宝箱
+     * 5:五号宝箱
      */
-    private Long userId;
+    private Long awardType;
 
     /**
-     * 变动的积分数量
+     * 名称
      */
-    private Long point;
+    private String awardName;
 
     /**
-     * 变动类型，1：每日助力，2：邀请好友
+     * 库存
      */
-    private Integer type;
-
-    /**
-     * 产生时间
-     */
-    private Date createTime = new Date();
+    private Long awardStock;
 
 }

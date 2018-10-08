@@ -1,8 +1,6 @@
 package com.gedoumi.tg.dataobj.vo;
 
-import com.gedoumi.tg.common.enums.CodeEnum;
 import lombok.Data;
-import org.springframework.util.StringUtils;
 
 /**
  * 响应对象
@@ -16,7 +14,7 @@ public class ResponseObject<T> {
     /**
      * 状态码
      */
-    private Integer code;
+    private Boolean success;
 
     /**
      * 描述信息
@@ -47,8 +45,7 @@ public class ResponseObject<T> {
      */
     public static <T> ResponseObject setSuccessResponse(T data) {
         ResponseObject<T> responseObject = new ResponseObject<>();
-        responseObject.setCode(CodeEnum.SUCCESS.getCode());
-        responseObject.setMessage(CodeEnum.SUCCESS.getMessage());
+        responseObject.setSuccess(true);
         responseObject.setData(data);
         return responseObject;
     }
@@ -56,30 +53,24 @@ public class ResponseObject<T> {
     /**
      * 封装失败响应数据（使用默认信息）
      *
-     * @param codeEnum 状态码枚举
-     * @param <T>      数据类型
+     * @param <T> 数据类型
      * @return 响应数据对象
      */
-    public static <T> ResponseObject setErrorResponse(CodeEnum codeEnum) {
-        return setErrorResponse(codeEnum, null);
+    public static <T> ResponseObject setErrorResponse() {
+        return setErrorResponse(null);
     }
 
     /**
      * 封装失败响应数据（使用自定义信息）
      *
-     * @param codeEnum 状态码枚举
-     * @param message  错误信息
-     * @param <T>      数据类型
+     * @param message 错误信息
+     * @param <T>     数据类型
      * @return 响应数据对象
      */
-    public static <T> ResponseObject setErrorResponse(CodeEnum codeEnum, String message) {
+    public static <T> ResponseObject setErrorResponse(String message) {
         ResponseObject<T> responseObject = new ResponseObject<>();
-        responseObject.setCode(codeEnum.getCode());
-        if (StringUtils.isEmpty(message)) {
-            responseObject.setMessage(codeEnum.getMessage());
-        } else {
-            responseObject.setMessage(message);
-        }
+        responseObject.setSuccess(false);
+        responseObject.setMessage(message);
         return responseObject;
     }
 

@@ -10,14 +10,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
-@Entity
+/**
+ * 用户抽奖详情（明细）
+ *
+ * @author Minced
+ */
+@Data
 @DynamicInsert
 @DynamicUpdate
-@Data
-public class UserPointDetail {
+@Entity
+public class UserAwardDetail {
 
     /**
-     * 积分详情ID
+     * ID
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,18 +34,20 @@ public class UserPointDetail {
     private Long userId;
 
     /**
-     * 变动的积分数量
+     * 奖品类型
      */
-    private Long point;
-
-    /**
-     * 变动类型，1：每日助力，2：邀请好友
-     */
-    private Integer type;
+    private Integer awardType;
 
     /**
      * 产生时间
      */
     private Date createTime = new Date();
+
+    /**
+     * 是否中奖
+     * 0:未中奖
+     * 1:中奖
+     */
+    private Integer isSuccess;
 
 }

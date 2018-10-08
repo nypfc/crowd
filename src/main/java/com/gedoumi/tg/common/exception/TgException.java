@@ -1,8 +1,8 @@
 package com.gedoumi.tg.common.exception;
 
-import com.gedoumi.tg.common.enums.CodeEnum;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.HttpStatus;
 
 /**
  * 普通异常
@@ -13,14 +13,17 @@ import lombok.Setter;
 @Setter
 public class TgException extends RuntimeException {
 
-    private CodeEnum codeEnum;
+    private HttpStatus httpStatus;
+
+    private String message;
 
     public TgException() {
         super();
     }
 
-    public TgException(CodeEnum codeEnum) {
-        this.codeEnum = codeEnum;
+    public TgException(HttpStatus httpStatus, String message) {
+        this.httpStatus = httpStatus;
+        this.message = message;
     }
 
 }

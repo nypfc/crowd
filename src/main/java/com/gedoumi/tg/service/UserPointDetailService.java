@@ -1,8 +1,6 @@
 package com.gedoumi.tg.service;
 
-import com.gedoumi.tg.common.enums.CodeEnum;
 import com.gedoumi.tg.common.enums.PointEnum;
-import com.gedoumi.tg.common.exception.DataBaseException;
 import com.gedoumi.tg.common.exception.TgException;
 import com.gedoumi.tg.dao.TotalPointDao;
 import com.gedoumi.tg.dao.UserDao;
@@ -18,7 +16,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import static com.gedoumi.tg.common.constants.ResponseMessage.ALREADY_POINTED;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 /**
@@ -27,7 +28,7 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
  * @author Minced
  */
 @Service
-public class UserPointService {
+public class UserPointDetailService {
 
     @Resource
     private UserDao userDao;
@@ -60,20 +61,29 @@ public class UserPointService {
             e.printStackTrace();
         }
         Integer count = userPointDetailDao.countByCreateTimeBetweenAndUserId(date, calendar.getTime(), user.getId());
-        if (count != 0) throw new TgException(CodeEnum.ALREADY_POINTED);
+        if (count != 0) throw new TgException(BAD_REQUEST, ALREADY_POINTED);
 
         // 3.增加积分详情（明细）
         UserPointDetail userPointDetail = new UserPointDetail();
         userPointDetail.setUserId(user.getId());
-        userPointDetail.setCreateTime(new Date());
         userPointDetail.setPoint(point);
         userPointDetail.setType(PointEnum.DAY.getType());
         userPointDetailDao.save(userPointDetail);
 
         // 4.更新总积分量
-        TotalPoint totalPoint = totalPointDao.findById(1L).orElseThrow(() -> new DataBaseException(CodeEnum.DB_ERROR, INTERNAL_SERVER_ERROR, "未查询到积分总量"));
+        TotalPoint totalPoint = totalPointDao.findById(1L).orElseThrow(() -> new TgException(INTERNAL_SERVER_ERROR, null));
         totalPoint.setTotalPoint(totalPoint.getTotalPoint() + point);
         totalPointDao.save(totalPoint);
+    }
+
+    /**
+     * 获取用户积分明细集合
+     *
+     * @param userId 用户ID
+     * @return 积分明细集合
+     */
+    public List<UserPointDetail> getUserPointDetailList(Long userId) {
+        return userPointDetailDao.findByUserId(userId);
     }
 
 }
