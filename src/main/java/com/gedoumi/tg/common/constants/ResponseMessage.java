@@ -19,4 +19,6 @@ public interface ResponseMessage {
 
     String ALREADY_AWARDED = "不能重复抽奖";
 
+    String AWARD_NOT_EXIST = "奖品不存在";
+
 }

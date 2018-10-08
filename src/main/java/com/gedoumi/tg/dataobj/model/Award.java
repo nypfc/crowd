@@ -32,7 +32,7 @@ public class Award {
      * 4:四号宝箱
      * 5:五号宝箱
      */
-    private Long awardType;
+    private Integer awardType;
 
     /**
      * 名称

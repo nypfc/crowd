@@ -1,7 +1,9 @@
 package com.gedoumi.tg.service;
 
 import com.gedoumi.tg.common.exception.TgException;
+import com.gedoumi.tg.dao.AwardDao;
 import com.gedoumi.tg.dao.UserAwardDetailDao;
+import com.gedoumi.tg.dataobj.model.Award;
 import com.gedoumi.tg.dataobj.model.User;
 import com.gedoumi.tg.dataobj.model.UserAwardDetail;
 import lombok.extern.slf4j.Slf4j;
@@ -9,10 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-
 import java.util.List;
 
 import static com.gedoumi.tg.common.constants.ResponseMessage.ALREADY_AWARDED;
+import static com.gedoumi.tg.common.constants.ResponseMessage.AWARD_NOT_EXIST;
 import static com.gedoumi.tg.common.constants.ResponseMessage.NOT_ENOUGH_POINT;
 import static com.gedoumi.tg.common.enums.TreasureTypeEnum.*;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
@@ -28,49 +30,50 @@ public class UserAwardDetailService {
 
     @Resource
     private UserAwardDetailDao userAwardDetailDao;
+    @Resource
+    private AwardService awardService;
 
     /**
-     * 创建用户抽奖详情
+     * 创建用户抽奖详情（明细）
      *
      * @param user 用户
+     * @return 抽奖结果，0:未中奖，1:中奖
      */
     @Transactional(rollbackFor = {Exception.class, RuntimeException.class})
-    public void create(User user) {
+    public Integer create(User user) {
         // 1.判断抽奖等级
         Long point = user.getPoint();
-        int type;
-        if (0L <= point && point < TYPE_1.getPoint()) {
+        int awardType;
+        if (0L <= point && point < AWARD_TYPE_1.getPoint())
             throw new TgException(BAD_REQUEST, NOT_ENOUGH_POINT);
-        } else if (TYPE_1.getPoint() <= point && point < TYPE_2.getPoint()) {
-            type = TYPE_1.getType();
-        } else if (TYPE_2.getPoint() <= point && point < TYPE_3.getPoint()) {
-            type = TYPE_2.getType();
-        } else if (TYPE_3.getPoint() <= point && point < TYPE_4.getPoint()) {
-            type = TYPE_3.getType();
-        } else if (TYPE_4.getPoint() <= point && point < TYPE_5.getPoint()) {
-            type = TYPE_4.getType();
-        } else {
-            type = TYPE_5.getType();
-        }
-        // 是否重复抽奖
-        if (userAwardDetailDao.countByUserIdAndAwardType(user.getId(), type) != 0) {
-            log.debug("userId:{}, type:{}, 重复抽奖");
+        else if (AWARD_TYPE_1.getPoint() <= point && point < AWARD_TYPE_2.getPoint())
+            awardType = AWARD_TYPE_1.getType();
+        else if (AWARD_TYPE_2.getPoint() <= point && point < AWARD_TYPE_3.getPoint())
+            awardType = AWARD_TYPE_2.getType();
+        else if (AWARD_TYPE_3.getPoint() <= point && point < AWARD_TYPE_4.getPoint())
+            awardType = AWARD_TYPE_3.getType();
+        else if (AWARD_TYPE_4.getPoint() <= point && point < AWARD_TYPE_5.getPoint())
+            awardType = AWARD_TYPE_4.getType();
+        else
+            awardType = AWARD_TYPE_5.getType();
+        // 查询数据库已经有相同的抽奖详情（是否重复抽奖）
+        if (userAwardDetailDao.countByUserIdAndAwardType(user.getId(), awardType) != 0) {
+            log.debug("userId:{}, awardType:{}, 重复抽奖");
             throw new TgException(BAD_REQUEST, ALREADY_AWARDED);
         }
 
-        // TODO 2.抽奖
-        int success = 0;
+        // 2.抽奖并获取结果
+        Integer success = awardService.raffle(awardType);
 
-        // 3.减少库存
-
-
-        // 4.创建抽奖明细
+        // 3.创建抽奖详情（明细）
         UserAwardDetail awardDetail = new UserAwardDetail();
         awardDetail.setUserId(user.getId());
-        awardDetail.setAwardType(type);
+        awardDetail.setAwardType(awardType);
         awardDetail.setIsSuccess(success);
         userAwardDetailDao.save(awardDetail);
 
+        // 4.返回抽奖结果
+        return success;
     }
 
     /**

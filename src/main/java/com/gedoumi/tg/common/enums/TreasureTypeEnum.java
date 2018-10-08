@@ -10,11 +10,11 @@ import lombok.Getter;
 @Getter
 public enum TreasureTypeEnum {
 
-    TYPE_1(1, 5L, "5分宝箱"),
-    TYPE_2(2, 20L, "20分宝箱"),
-    TYPE_3(3, 50L, "50分宝箱"),
-    TYPE_4(4, 100L, "100分宝箱"),
-    TYPE_5(5, 200L, "200分宝箱"),
+    AWARD_TYPE_1(1, 20L, "一号宝箱"),
+    AWARD_TYPE_2(2, 50L, "二号宝箱"),
+    AWARD_TYPE_3(3, 100L, "三号宝箱"),
+    AWARD_TYPE_4(4, 160L, "四号宝箱"),
+    AWARD_TYPE_5(5, 250L, "五号宝箱"),
     ;
 
     private Integer type;
