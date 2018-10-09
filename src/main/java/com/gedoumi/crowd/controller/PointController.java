@@ -3,7 +3,9 @@ package com.gedoumi.crowd.controller;
 import com.gedoumi.crowd.dataobj.model.User;
 import com.gedoumi.crowd.dataobj.model.UserPointDetail;
 import com.gedoumi.crowd.dataobj.vo.ResponseObject;
+import com.gedoumi.crowd.dataobj.vo.TotalPointAndUserVO;
 import com.gedoumi.crowd.dataobj.vo.UserPointVO;
+import com.gedoumi.crowd.service.TotalPointService;
 import com.gedoumi.crowd.service.UserPointDetailService;
 import com.gedoumi.crowd.service.UserService;
 import com.google.common.collect.Maps;
@@ -28,9 +30,24 @@ import java.util.stream.Collectors;
 public class PointController {
 
     @Resource
+    private TotalPointService totalPointService;
+    @Resource
     private UserPointDetailService userPointDetailService;
     @Resource
     private UserService userService;
+
+    /**
+     * 获取总参与人数
+     *
+     * @return ResponseObject
+     */
+    @GetMapping("/total")
+    public ResponseObject totalPoint() {
+        TotalPointAndUserVO pointAndUserVO = new TotalPointAndUserVO();
+        pointAndUserVO.setTotalPoint(totalPointService.getTotalPoint());
+        pointAndUserVO.setTotalUser(userPointDetailService.getTotalPointedUser());
+        return ResponseObject.setSuccessResponse(pointAndUserVO);
+    }
 
     /**
      * 获取用户当前积分

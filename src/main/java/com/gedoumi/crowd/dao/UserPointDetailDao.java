@@ -2,6 +2,7 @@ package com.gedoumi.crowd.dao;
 
 import com.gedoumi.crowd.dataobj.model.UserPointDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,14 @@ import java.util.List;
  * @author Minced
  */
 public interface UserPointDetailDao extends JpaRepository<UserPointDetail, Long> {
+
+    /**
+     * 查询参与助力的总用户数量
+     *
+     * @return 总用户数量
+     */
+    @Query(value = "select count(0) from (select count(0) from user_point_detail group by user_id) total_user", nativeQuery = true)
+    Long countByTotalUser();
 
     /**
      * 查询当日助力数量

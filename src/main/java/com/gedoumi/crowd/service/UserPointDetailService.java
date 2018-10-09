@@ -35,7 +35,15 @@ public class UserPointDetailService {
     @Resource
     private UserPointDetailDao userPointDetailDao;
     @Resource
-    private TotalPointDao totalPointDao;
+    private TotalPointService totalPointService;
+
+    /**
+     * 获取参数过助力的总用户数
+     * @return 总用户数
+     */
+    public Long getTotalPointedUser() {
+        return userPointDetailDao.countByTotalUser();
+    }
 
     /**
      * 每日积分助力
@@ -71,9 +79,7 @@ public class UserPointDetailService {
         userPointDetailDao.save(userPointDetail);
 
         // 4.更新总积分量
-        TotalPoint totalPoint = totalPointDao.findById(1L).orElseThrow(() -> new TgException(INTERNAL_SERVER_ERROR, null));
-        totalPoint.setTotalPoint(totalPoint.getTotalPoint() + point);
-        totalPointDao.save(totalPoint);
+        totalPointService.updateTotalPoint(point);
     }
 
     /**
