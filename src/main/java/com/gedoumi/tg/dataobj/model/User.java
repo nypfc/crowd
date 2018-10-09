@@ -34,11 +34,6 @@ public class User {
     private String uid;
 
     /**
-     * 用户名
-     */
-    private String username;
-
-    /**
      * 昵称
      */
     private String nickname;
@@ -56,7 +51,7 @@ public class User {
     /**
      * 注册时间
      */
-    private Date registerTime;
+    private Date registerTime = new Date();
 
     /**
      * 邀请码

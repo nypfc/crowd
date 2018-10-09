@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 import static com.gedoumi.tg.common.constants.ResponseMessage.NO_LOGIN;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
@@ -64,17 +65,32 @@ public class UserService {
      */
     @Transactional(rollbackFor = {Exception.class, RuntimeException.class})
     public String userLogin(LoginForm loginForm) {
-        return null;
+        // 根据UID查询
+        User user = userDao.findByUid(loginForm.getUid()).orElse(createUser(loginForm));
+        // 设置Token
+        user.setToken(UUID.randomUUID().toString().replace("-", ""));
+        userDao.save(user);
+        return user.getToken();
     }
 
     /**
-     * 用户注册
+     * 创建用户对象
      *
-     * @param user 用户对象
+     * @return 用户对象
      */
-    @Transactional(rollbackFor = {Exception.class, RuntimeException.class})
-    public void userRegister(User user) {
-        userDao.save(user);
+    private User createUser(LoginForm loginForm) {
+        User user = new User();
+        user.setUid(loginForm.getUid());
+        user.setNickname(loginForm.getNickname());
+        user.setAvatar(loginForm.getAvatar());
+        // TODO 邀请码的判断
+        if (loginForm.getInvitedCode() == null) {
+            user.setInvitedCode("yaoqingma");
+        } else {
+            user.setInvitedCode(loginForm.getInvitedCode());
+        }
+
+        return user;
     }
 
 }

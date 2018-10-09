@@ -33,9 +33,8 @@ public class LoginController {
      */
     @PostMapping("/login")
     public ResponseObject userLogin(@RequestBody @Valid LoginForm loginForm) {
-        System.out.println(loginForm);
         HashMap<Object, Object> map = Maps.newHashMap();
-        map.put("token", "token");
+        map.put("token", userService.userLogin(loginForm));
         return ResponseObject.setSuccessResponse(map);
     }
 
