@@ -29,6 +29,6 @@ public interface UserPointDetailDao extends JpaRepository<UserPointDetail, Long>
      * @param userId 用户ID
      * @return 积分明细集合
      */
-    List<UserPointDetail> findByUserId(Long userId);
+    List<UserPointDetail> findByUserIdOrderByCreateTimeDesc(Long userId);
 
 }

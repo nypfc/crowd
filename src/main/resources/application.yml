@@ -19,3 +19,5 @@ spring:
 logging:  # 日志配置
   level:
     com.gedoumi.tg.component.RequestInterceptor: info
+    com.gedoumi.tg.component.WebSocketHandler: debug
+    com.gedoumi.tg.service.AwardService: debug  # 抽奖方法

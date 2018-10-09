@@ -1,21 +1,20 @@
 package com.gedoumi.tg;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gedoumi.tg.dataobj.vo.ResponseObject;
 import org.junit.Test;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
+import java.math.BigDecimal;
 
 public class NormalTest {
 
     @Test
-    public void dateTest() {
-        for (int a = 0; a < 100; a++) {
-            int i = new Random().nextInt(10001);
-            System.out.println(i);
-        }
+    public void dateTest() throws JsonProcessingException {
+        System.out.println(new BigDecimal(Math.random()).setScale(4, BigDecimal.ROUND_DOWN));
+        ObjectMapper mapper = new ObjectMapper();
+        ResponseObject responseObject = ResponseObject.setSuccessResponse("abcdefg");
+        System.out.println(mapper.writeValueAsString(responseObject));
     }
 
 }

@@ -3,6 +3,7 @@ package com.gedoumi.tg.component;
 import com.gedoumi.tg.common.exception.TgException;
 import com.gedoumi.tg.dao.UserDao;
 import com.gedoumi.tg.dataobj.model.User;
+import com.gedoumi.tg.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -23,7 +24,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 public class RequestInterceptor implements HandlerInterceptor {
 
     @Resource
-    private UserDao userDao;
+    private UserService userService;
 
     /**
      * 用户登陆拦截器
@@ -37,13 +38,8 @@ public class RequestInterceptor implements HandlerInterceptor {
             log.warn("未获取到Token");
             throw new TgException(BAD_REQUEST, NO_LOGIN);
         }
-        if (userDao.countByToken(token) != 1) {
-            log.warn("未能通过Token查询到用户");
-            throw new TgException(BAD_REQUEST, NO_LOGIN);
-        }
         // 查询用户并将用户存入request作用域中
-        User user = userDao.findByToken(token);
-        request.setAttribute("user", user);
+        request.setAttribute("user", userService.getUser(token));
         return true;
     }
 

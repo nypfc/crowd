@@ -21,4 +21,8 @@ public interface ResponseMessage {
 
     String AWARD_NOT_EXIST = "奖品不存在";
 
+    String NOT_ENOUGH_STOCK = "奖品库存不足";
+
+    String PUSH_MESSAGE_ERROR = "推送消息错误";
+
 }

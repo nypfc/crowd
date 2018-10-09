@@ -19,13 +19,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 用户积分Controller
+ * 积分Controller
  *
  * @author Minced
  */
 @RequestMapping("/point")
 @RestController
-public class UserPointController {
+public class PointController {
 
     @Resource
     private UserPointDetailService userPointDetailService;
@@ -39,7 +39,7 @@ public class UserPointController {
      */
     @GetMapping("/get")
     public ResponseObject userPoint() {
-        User user = userService.getUser();
+        User user = userService.getUserFromRequest();
         HashMap<String, Long> map = Maps.newHashMap();
         map.put("userPoint", user.getPoint());
         return ResponseObject.setSuccessResponse(map);
@@ -52,7 +52,7 @@ public class UserPointController {
      */
     @PostMapping("/add")
     public ResponseObject addPoint() {
-        User user = userService.getUser();
+        User user = userService.getUserFromRequest();
         userPointDetailService.addPoint(user);
         return ResponseObject.setSuccessResponse();
     }
@@ -64,7 +64,7 @@ public class UserPointController {
      */
     @GetMapping("/list")
     public ResponseObject userPointList() {
-        User user = userService.getUser();
+        User user = userService.getUserFromRequest();
         List<UserPointDetail> userPointDetailList = userPointDetailService.getUserPointDetailList(user.getId());
         // 封装返回数据
         return ResponseObject.setSuccessResponse(userPointDetailList.stream().map(userPointDetail -> {

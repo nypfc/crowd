@@ -19,13 +19,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 用户抽奖Controller
+ * 抽奖Controller
  *
  * @author Minced
  */
-@RequestMapping("/treasure")
+@RequestMapping("/award")
 @RestController
-public class UserAwardController {
+public class AwardController {
 
     @Resource
     private UserAwardDetailService userAwardDetailService;
@@ -37,11 +37,11 @@ public class UserAwardController {
      *
      * @return ResponseObject
      */
-    @PostMapping("/add")
-    public ResponseObject create() {
-        User user = userService.getUser();
+    @PostMapping("/raffle")
+    public ResponseObject raffle() {
+        User user = userService.getUserFromRequest();
         HashMap<String, Integer> map = Maps.newHashMap();
-        map.put("success", userAwardDetailService.create(user));
+        map.put("result", userAwardDetailService.create(user));
         return ResponseObject.setSuccessResponse(map);
     }
 
@@ -52,7 +52,7 @@ public class UserAwardController {
      */
     @GetMapping("/list")
     public ResponseObject userAwardList() {
-        User user = userService.getUser();
+        User user = userService.getUserFromRequest();
         List<UserAwardDetail> userAwardList = userAwardDetailService.getUserAwardList(user.getId());
         // 封装返回数据
         return ResponseObject.setSuccessResponse(userAwardList.stream().map(userAwardDetail -> {

@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 @Component
 public class UserDaoTest extends TgApplicationTests {
@@ -14,14 +15,8 @@ public class UserDaoTest extends TgApplicationTests {
     private UserDao userDao;
 
     @Test
-    public void countByToken() {
-        Integer count = userDao.countByToken("aaaa");
-        System.out.println(count);
-    }
-
-    @Test
     public void findByToken() {
-        User user = userDao.findByToken("aaaa");
+        Optional<User> user = userDao.findByToken("aaaa");
         System.out.println(user);
     }
 

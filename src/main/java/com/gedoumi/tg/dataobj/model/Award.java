@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 /**
  * 奖品
@@ -43,5 +44,15 @@ public class Award {
      * 库存
      */
     private Long awardStock;
+
+    /**
+     *
+     */
+    private BigDecimal awardBegin;
+
+    /**
+     *
+     */
+    private BigDecimal awardEnd;
 
 }

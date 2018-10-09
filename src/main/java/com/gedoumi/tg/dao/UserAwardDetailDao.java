@@ -27,6 +27,6 @@ public interface UserAwardDetailDao extends JpaRepository<UserAwardDetail, Long>
      * @param userId 用户ID
      * @return 抽奖详情集合
      */
-    List<UserAwardDetail> findByUserId(Long userId);
+    List<UserAwardDetail> findByUserIdOrderByCreateTimeDesc(Long userId);
 
 }

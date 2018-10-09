@@ -58,22 +58,22 @@ public class UserAwardDetailService {
             awardType = AWARD_TYPE_5.getType();
         // 查询数据库已经有相同的抽奖详情（是否重复抽奖）
         if (userAwardDetailDao.countByUserIdAndAwardType(user.getId(), awardType) != 0) {
-            log.debug("userId:{}, awardType:{}, 重复抽奖");
+            log.warn("userId:{}, awardType:{}, 重复抽奖", user.getId(), awardType);
             throw new TgException(BAD_REQUEST, ALREADY_AWARDED);
         }
 
         // 2.抽奖并获取结果
-        Integer success = awardService.raffle(awardType);
+        Integer result = awardService.raffle(user.getNickname(), awardType);
 
         // 3.创建抽奖详情（明细）
         UserAwardDetail awardDetail = new UserAwardDetail();
         awardDetail.setUserId(user.getId());
         awardDetail.setAwardType(awardType);
-        awardDetail.setIsSuccess(success);
+        awardDetail.setIsSuccess(result);
         userAwardDetailDao.save(awardDetail);
 
         // 4.返回抽奖结果
-        return success;
+        return result;
     }
 
     /**
@@ -83,7 +83,7 @@ public class UserAwardDetailService {
      * @return 用户抽奖详情集合
      */
     public List<UserAwardDetail> getUserAwardList(Long userId) {
-        return userAwardDetailDao.findByUserId(userId);
+        return userAwardDetailDao.findByUserIdOrderByCreateTimeDesc(userId);
     }
 
 }

@@ -6,10 +6,8 @@ import org.junit.Test;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-
-import java.util.List;
-
-import static org.junit.Assert.*;
+import java.math.BigDecimal;
+import java.util.Optional;
 
 @Component
 public class AwardDaoTest extends TgApplicationTests {
@@ -19,7 +17,18 @@ public class AwardDaoTest extends TgApplicationTests {
 
     @Test
     public void findByAwardType() {
+        long sum = awardDao.findByAwardType(2).stream().mapToLong(Award::getAwardStock).sum();
+        System.out.println(sum);
+    }
 
+    @Test
+    public void findByAwardTypeAndAwardBeginGreaterThanAndAwardEndLessThan() {
+        double random = Math.random();
+        System.out.println(random);
+        BigDecimal pro = new BigDecimal(random).setScale(4, BigDecimal.ROUND_DOWN);
+        System.out.println(pro);
+        Award award = awardDao.findByAwardTypeAndAwardBeginAndAwardEnd(1, pro);
+        System.out.println(award);
     }
 
 }

@@ -83,7 +83,7 @@ public class UserPointDetailService {
      * @return 积分明细集合
      */
     public List<UserPointDetail> getUserPointDetailList(Long userId) {
-        return userPointDetailDao.findByUserId(userId);
+        return userPointDetailDao.findByUserIdOrderByCreateTimeDesc(userId);
     }
 
 }

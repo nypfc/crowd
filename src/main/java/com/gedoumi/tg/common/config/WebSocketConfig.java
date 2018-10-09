@@ -2,6 +2,7 @@ package com.gedoumi.tg.common.config;
 
 import com.gedoumi.tg.component.WebSocketHandler;
 import com.gedoumi.tg.component.WebSocketInterceptor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -27,13 +28,23 @@ public class WebSocketConfig implements WebSocketConfigurer {
         // WebSocket
         webSocketHandlerRegistry
                 .addHandler(new WebSocketHandler(), "/ws")
-                .addInterceptors(new WebSocketInterceptor())
+                .addInterceptors(webSocketInterceptor())
                 .setAllowedOrigins("*");
         // WebSocket模拟
         webSocketHandlerRegistry
                 .addHandler(new WebSocketHandler(), "/ws/sockjs")
-                .addInterceptors(new WebSocketInterceptor())
+                .addInterceptors(webSocketInterceptor())
                 .setAllowedOrigins("*").withSockJS();
+    }
+
+    /**
+     * 注册WebSocket拦截器
+     *
+     * @return WebSocket拦截器
+     */
+    @Bean
+    public WebSocketInterceptor webSocketInterceptor() {
+        return new WebSocketInterceptor();
     }
 
 }

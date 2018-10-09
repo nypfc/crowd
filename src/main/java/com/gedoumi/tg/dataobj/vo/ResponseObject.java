@@ -27,7 +27,7 @@ public class ResponseObject<T> {
     private T data;
 
     /**
-     * 封装成功响应数据（不带数据）
+     * 创建成功响应数据（不带数据）
      *
      * @param <T> 数据类型
      * @return 响应数据对象
@@ -37,7 +37,7 @@ public class ResponseObject<T> {
     }
 
     /**
-     * 封装成功响应数据（带数据）
+     * 创建成功响应数据（带数据）
      *
      * @param data 响应的具体数据
      * @param <T>  数据类型
@@ -51,7 +51,7 @@ public class ResponseObject<T> {
     }
 
     /**
-     * 封装失败响应数据（使用默认信息）
+     * 创建失败响应数据（使用默认信息）
      *
      * @param <T> 数据类型
      * @return 响应数据对象
@@ -61,7 +61,7 @@ public class ResponseObject<T> {
     }
 
     /**
-     * 封装失败响应数据（使用自定义信息）
+     * 创建失败响应数据（使用自定义信息）
      *
      * @param message 错误信息
      * @param <T>     数据类型
