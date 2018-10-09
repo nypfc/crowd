@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Component
-public class CrowdApplicationTests extends CrowdApplicationTests {
+public class UserPointDetailDaoTests extends CrowdApplicationTests {
 
     @Resource
     private UserPointDetailDao userPointDetailDao;
@@ -26,4 +26,5 @@ public class CrowdApplicationTests extends CrowdApplicationTests {
         Integer integer = userPointDetailDao.countByCreateTimeBetweenAndUserId(date, calendar.getTime(), 2L);
         System.out.println(integer);
     }
+
 }
