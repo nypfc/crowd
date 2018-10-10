@@ -1,7 +1,7 @@
 package com.gedoumi.crowd.component;
 
-import com.gedoumi.crowd.dataobj.model.User;
-import com.gedoumi.crowd.service.UserService;
+import com.gedoumi.crowd.api.dataobj.model.User;
+import com.gedoumi.crowd.api.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;

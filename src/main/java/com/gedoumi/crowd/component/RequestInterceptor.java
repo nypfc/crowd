@@ -1,7 +1,7 @@
 package com.gedoumi.crowd.component;
 
 import com.gedoumi.crowd.common.exception.TgException;
-import com.gedoumi.crowd.service.UserService;
+import com.gedoumi.crowd.api.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;

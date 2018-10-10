@@ -1,7 +1,7 @@
 package com.gedoumi.crowd.component;
 
 import com.gedoumi.crowd.common.exception.TgException;
-import com.gedoumi.crowd.dataobj.vo.ResponseObject;
+import com.gedoumi.crowd.api.dataobj.vo.ResponseObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

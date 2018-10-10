@@ -15,9 +15,15 @@ spring:
     default-property-inclusion: non_null
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  freemarker:  # Freemarker配置
+    charset: UTF-8
+    content-type: text/html;charset=UTF-8
+    settings:
+      datetime_format: yyyy-MM-dd HH:mm:ss
+      default_encoding: UTF-8
 
 logging:  # 日志配置
   level:
     com.gedoumi.tg.component.RequestInterceptor: info
     com.gedoumi.tg.component.WebSocketHandler: debug
-    com.gedoumi.tg.service.AwardService: debug  # 抽奖方法
+    com.gedoumi.tg.service.AwardService: debug  # 抽奖
