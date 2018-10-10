@@ -33,4 +33,14 @@ public class AdminPageController {
         return "/indexPage";
     }
 
+    /**
+     * 用户管理页面跳转
+     *
+     * @return 用户管理页面路径
+     */
+    @GetMapping("/userPage")
+    public String userPage() {
+        return "/admin/userPage";
+    }
+
 }
