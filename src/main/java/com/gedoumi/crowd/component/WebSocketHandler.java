@@ -15,7 +15,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.gedoumi.crowd.common.constants.ResponseMessage.PUSH_MESSAGE_ERROR;
+import static com.gedoumi.crowd.common.constants.ResponseMessageConstants.PUSH_MESSAGE_ERROR;
 import static com.gedoumi.crowd.common.enums.MessageEnum.CONNECTION_SUCCESS;
 import static com.gedoumi.crowd.common.enums.MessageEnum.USER_AWARDED;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;

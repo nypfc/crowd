@@ -38,7 +38,18 @@
             }),
             contentType: 'application/json',
             success: function(data) {
-                console.info(data);
+                if (data.success) {
+                    location.href = "/admin/indexPage";
+                } else {
+                    console.info(data);
+                }
+            },
+            error: function(data) {
+                if (data.status === 401) {
+                    $.messager.alert('错误', data.responseJSON.message, 'error');
+                } else {
+                    $.messager.alert('错误', '服务器异常', 'error');
+                }
             }
         });
     }

@@ -10,7 +10,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.gedoumi.crowd.common.constants.ResponseMessage.NO_LOGIN;
+import static com.gedoumi.crowd.common.constants.ProjectConstants.AUTH_TOKEN;
+import static com.gedoumi.crowd.common.constants.ResponseMessageConstants.NO_LOGIN;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 /**
@@ -31,7 +32,7 @@ public class ApiRequestInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String token = request.getHeader("auth-token");
+        String token = request.getHeader(AUTH_TOKEN);
         if (StringUtils.isEmpty(token)) {
             log.warn("未获取到Token");
             throw new TgException(BAD_REQUEST, NO_LOGIN);

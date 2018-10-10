@@ -13,6 +13,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
+import static com.gedoumi.crowd.common.constants.ProjectConstants.AUTH_TOKEN;
+
 /**
  * WebSocket拦截器
  *
@@ -28,7 +30,7 @@ public class WebSocketInterceptor implements HandshakeInterceptor {
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
         // request参数强转并获取Token
         HttpServletRequest servletRequest = ((ServletServerHttpRequest) request).getServletRequest();
-        String token = servletRequest.getParameter("auth-token");
+        String token = servletRequest.getParameter(AUTH_TOKEN);
         // 查询用户
         User user = userService.getUser(token);
         // 传递用户ID

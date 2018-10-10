@@ -1,6 +1,7 @@
 package com.gedoumi.crowd.service;
 
 import com.gedoumi.crowd.common.exception.TgException;
+import com.gedoumi.crowd.common.utils.LoginUtil;
 import com.gedoumi.crowd.dao.UserDao;
 import com.gedoumi.crowd.dataobj.form.LoginForm;
 import com.gedoumi.crowd.dataobj.model.User;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.UUID;
 
-import static com.gedoumi.crowd.common.constants.ResponseMessage.NO_LOGIN;
+import static com.gedoumi.crowd.common.constants.ResponseMessageConstants.NO_LOGIN;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 /**
@@ -69,7 +70,7 @@ public class UserService {
         // 根据UID查询
         User user = userDao.findByUid(loginForm.getUid()).orElse(createUser(loginForm));
         // 设置Token
-        user.setToken(UUID.randomUUID().toString().replace("-", ""));
+        user.setToken(LoginUtil.createToken());
         user.setLastLoginTime(new Date());
         userDao.save(user);
         return user.getToken();

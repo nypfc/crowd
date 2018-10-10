@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
-import static com.gedoumi.crowd.common.constants.ResponseMessage.ALREADY_AWARDED;
-import static com.gedoumi.crowd.common.constants.ResponseMessage.NOT_ENOUGH_POINT;
+import static com.gedoumi.crowd.common.constants.ResponseMessageConstants.ALREADY_AWARDED;
+import static com.gedoumi.crowd.common.constants.ResponseMessageConstants.NOT_ENOUGH_POINT;
 import static com.gedoumi.crowd.common.enums.TreasureTypeEnum.*;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 

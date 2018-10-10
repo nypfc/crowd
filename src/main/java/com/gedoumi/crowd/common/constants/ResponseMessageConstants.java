@@ -5,7 +5,7 @@ package com.gedoumi.crowd.common.constants;
  *
  * @author Minced
  */
-public interface ResponseMessage {
+public interface ResponseMessageConstants {
 
     String SUCCESS = "请求成功";
 
@@ -24,5 +24,7 @@ public interface ResponseMessage {
     String NOT_ENOUGH_STOCK = "奖品库存不足";
 
     String PUSH_MESSAGE_ERROR = "推送消息错误";
+
+    String USERNAME_OR_PASSWORD_ERROR = "用户名或密码错误";
 
 }

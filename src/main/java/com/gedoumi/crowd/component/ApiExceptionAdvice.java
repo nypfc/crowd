@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Arrays;
 
-import static com.gedoumi.crowd.common.constants.ResponseMessage.SERVER_ERROR;
+import static com.gedoumi.crowd.common.constants.ResponseMessageConstants.SERVER_ERROR;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
@@ -24,7 +24,7 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
  */
 @Slf4j
 @RestControllerAdvice
-public class ExceptionAdvice {
+public class ApiExceptionAdvice {
 
     /**
      * 项目内异常

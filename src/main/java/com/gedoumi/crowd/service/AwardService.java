@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 
-import static com.gedoumi.crowd.common.constants.ResponseMessage.NOT_ENOUGH_STOCK;
+import static com.gedoumi.crowd.common.constants.ResponseMessageConstants.NOT_ENOUGH_STOCK;
 import static java.math.BigDecimal.ROUND_DOWN;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 

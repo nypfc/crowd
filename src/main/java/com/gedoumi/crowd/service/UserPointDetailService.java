@@ -16,7 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static com.gedoumi.crowd.common.constants.ResponseMessage.ALREADY_POINTED;
+import static com.gedoumi.crowd.common.constants.ResponseMessageConstants.ALREADY_POINTED;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 /**

@@ -20,4 +20,12 @@ public interface AdminUserDao extends JpaRepository<AdminUser, Long> {
      */
     AdminUser findByToken(String token);
 
+    /**
+     * 根据用户名查询
+     *
+     * @param username 用户名
+     * @return 后台用户
+     */
+    Optional<AdminUser> findByUsername(String username);
+
 }
