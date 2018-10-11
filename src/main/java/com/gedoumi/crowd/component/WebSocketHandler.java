@@ -2,7 +2,7 @@ package com.gedoumi.crowd.component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gedoumi.crowd.common.exception.TgException;
-import com.gedoumi.crowd.dataobj.vo.AwardUserVO;
+import com.gedoumi.crowd.dataobj.vo.api.AwardUserVO;
 import com.gedoumi.crowd.dataobj.vo.MessageVO;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;

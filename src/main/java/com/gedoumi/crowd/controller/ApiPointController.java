@@ -4,7 +4,7 @@ import com.gedoumi.crowd.common.utils.ContextUtil;
 import com.gedoumi.crowd.dataobj.model.User;
 import com.gedoumi.crowd.dataobj.model.UserPointDetail;
 import com.gedoumi.crowd.dataobj.vo.ResponseObject;
-import com.gedoumi.crowd.dataobj.vo.UserPointVO;
+import com.gedoumi.crowd.dataobj.vo.api.UserPointVO;
 import com.gedoumi.crowd.service.UserPointDetailService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.BeanUtils;

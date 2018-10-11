@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 import static com.gedoumi.crowd.common.constants.ResponseMessageConstants.NO_LOGIN;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
@@ -65,6 +66,16 @@ public class UserService {
     @Transactional(rollbackFor = {Exception.class, RuntimeException.class})
     public void updateUserPoint(User user) {
         userDao.save(user);
+    }
+
+    /**
+     * 获取指定ID的用户
+     *
+     * @param userIdList 用户ID集合
+     * @return 用户集合
+     */
+    public List<User> getUserByIdList(List<Long> userIdList) {
+        return userDao.findAllById(userIdList);
     }
 
     /**

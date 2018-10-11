@@ -1,10 +1,13 @@
 package com.gedoumi.crowd.controller;
 
 import com.gedoumi.crowd.dataobj.vo.ResponseObject;
+import com.gedoumi.crowd.service.UserPointDetailService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * 管理后台积分Controller
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/admin/point")
 @RestController
 public class AdminPointController {
+
+    @Resource
+    private UserPointDetailService userPointDetailService;
 
     /**
      * 用户积分明细列表
@@ -25,7 +31,7 @@ public class AdminPointController {
     @GetMapping("/list")
     public ResponseObject pointList(@RequestParam(defaultValue = "1") Integer page,
                                     @RequestParam(defaultValue = "30") Integer rows) {
-        return null;
+        return ResponseObject.setSuccessResponse(userPointDetailService.pointList(page, rows));
     }
 
 }

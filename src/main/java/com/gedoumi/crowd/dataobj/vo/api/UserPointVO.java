@@ -1,4 +1,4 @@
-package com.gedoumi.crowd.dataobj.vo;
+package com.gedoumi.crowd.dataobj.vo.api;
 
 import lombok.Data;
 
