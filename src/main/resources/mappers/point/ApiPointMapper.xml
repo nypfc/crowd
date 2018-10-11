@@ -24,7 +24,7 @@
           AND type = #{param4}
     </select>
 
-    <insert id="insertUserPointDetail" parameterType="UserPointDetail">
+    <insert id="createUserPointDetail" parameterType="UserPointDetail">
         INSERT INTO user_point_detail (user_id, point, type, create_time)
         VALUES (#{userId}, #{point}, #{type}, NOW())
     </insert>

@@ -33,7 +33,7 @@
         WHERE id = #{param1}
     </update>
 
-    <insert id="insertUserAwardDetail" parameterType="UserAwardDetail">
+    <insert id="createUserAwardDetail" parameterType="UserAwardDetail">
         INSERT INTO user_award_detail (user_id, award_type, create_time, is_success)
         VALUES (#{userId}, #{awardType}, NOW(), #{isSuccess})
     </insert>
@@ -42,6 +42,7 @@
         SELECT award_type, create_time, is_success
         FROM user_award_detail
         WHERE user_id = #{param1}
+        ORDER BY create_time DESC
     </select>
 
 </mapper>

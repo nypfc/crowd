@@ -26,7 +26,7 @@ spring:
 
 mybatis:  # MyBatis配置项
   type-aliases-package: com.gedoumi.crowd  # 别名包
-  mapper-locations: classpath:/mappers/*.xml  # xml文件位置
+  mapper-locations: classpath:mappers/**/**.xml  # xml文件位置
   configuration:
     cache-enabled: false  # 关闭缓存
     map-underscore-to-camel-case: true  # 是否开启自动驼峰命名规则

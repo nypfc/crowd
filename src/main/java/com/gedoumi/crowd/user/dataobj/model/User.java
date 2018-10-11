@@ -35,12 +35,12 @@ public class User {
     /**
      * 积分
      */
-    private Long point;
+    private Long point = 0L;
 
     /**
      * 注册时间
      */
-    private Date registerTime = new Date();
+    private Date registerTime;
 
     /**
      * 上次登录时间

@@ -55,7 +55,7 @@ public class UserService {
         // 2.设置Token
         String token = LoginUtil.createToken();
         userMapper.updateTokenAndLastLoginTime(user.getId(), token);
-        return user.getToken();
+        return token;
     }
 
     /**

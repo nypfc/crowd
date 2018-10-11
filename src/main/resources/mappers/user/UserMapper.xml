@@ -5,7 +5,7 @@
 
 <mapper namespace="com.gedoumi.crowd.user.mapper.UserMapper">
 
-    <select id="queryUserByToken" resultType="User">
+    <select id="queryByToken" resultType="User">
         SELECT id,
                uid,
                nickname,
@@ -19,7 +19,7 @@
         WHERE token = #{param1}
     </select>
 
-    <select id="queryUserByUid" resultType="User">
+    <select id="queryByUid" resultType="User">
         SELECT id,
                uid,
                nickname,
