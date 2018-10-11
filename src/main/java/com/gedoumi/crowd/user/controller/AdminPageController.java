@@ -1,11 +1,11 @@
-package com.gedoumi.crowd.award.controller;
+package com.gedoumi.crowd.user.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * 页面跳转Controller
+ * 管理后台登录页和用户相关跳转Controller
  *
  * @author Minced
  */
@@ -31,16 +31,6 @@ public class AdminPageController {
     @GetMapping("/indexPage")
     public String indexPage() {
         return "/indexPage";
-    }
-
-    /**
-     * 积分明细页面跳转
-     *
-     * @return 积分明细页面路径
-     */
-    @GetMapping("/pointPage")
-    public String pointPage() {
-        return "/pointPage";
     }
 
     /**
