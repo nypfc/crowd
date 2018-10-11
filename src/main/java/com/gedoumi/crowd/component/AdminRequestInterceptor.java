@@ -1,9 +1,8 @@
 package com.gedoumi.crowd.component;
 
-import com.gedoumi.crowd.common.exception.TgException;
 import com.gedoumi.crowd.common.utils.CookieUtil;
-import com.gedoumi.crowd.dataobj.model.AdminUser;
-import com.gedoumi.crowd.service.AdminUserService;
+import com.gedoumi.crowd.user.dataobj.model.AdminUser;
+import com.gedoumi.crowd.user.service.AdminUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import static com.gedoumi.crowd.common.constants.ProjectConstants.AUTH_TOKEN;
-import static com.gedoumi.crowd.common.constants.ResponseMessageConstants.NO_LOGIN;
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 /**
  * Admin请求拦截器

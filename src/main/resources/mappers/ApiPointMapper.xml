@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gedoumi.crowd.point.mapper.ApiPointMapper">
+
+    <select id="queryTotalPoint" resultType="Long">
+        SELECT total_point
+        FROM total_point
+        WHERE id = #{param1}
+    </select>
+
+    <select id="countPointedUser" resultType="Long">
+        SELECT count(0)
+        FROM (SELECT count(0) FROM user_point_detail GROUP BY user_id) total_user
+    </select>
+
+    <select id="countPointedSameday" resultType="Integer">
+        SELECT count(0)
+        FROM user_point_detail
+        WHERE user_id = #{param1}
+          AND create_time BETWEEN #{param2} AND #{param3}
+          AND type = #{param4}
+    </select>
+
+    <insert id="insertUserPointDetail" parameterType="UserPointDetail">
+        INSERT INTO user_point_detail (user_id, point, type, create_time)
+        VALUES (#{userId}, #{point}, #{type}, NOW())
+    </insert>
+
+    <update id="updateTotalPoint">
+        UPDATE total_point
+        SET total_point = total_point + #{param2}
+        WHERE id = #{param1}
+    </update>
+
+    <select id="queryUserPointDetailList" resultType="UserPointDetail">
+        SELECT create_time, point, type
+        FROM user_point_detail
+        WHERE user_id = #{param1}
+        ORDER BY create_time DESC
+    </select>
+
+</mapper>

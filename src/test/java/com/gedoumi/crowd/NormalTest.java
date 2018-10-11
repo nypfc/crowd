@@ -2,7 +2,7 @@ package com.gedoumi.crowd;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gedoumi.crowd.dataobj.vo.ResponseObject;
+import com.gedoumi.crowd.common.utils.ResponseObject;
 import org.junit.Test;
 
 import java.math.BigDecimal;

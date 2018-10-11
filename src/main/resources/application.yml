@@ -24,6 +24,22 @@ spring:
       default_encoding: UTF-8
       auto_import: common.ftl as common  # 设置包文件以及别名
 
+mybatis:  # MyBatis配置项
+  type-aliases-package: com.gedoumi.crowd  # 别名包
+  mapper-locations: classpath:/mappers/*.xml  # xml文件位置
+  configuration:
+    cache-enabled: false  # 关闭缓存
+    map-underscore-to-camel-case: true  # 是否开启自动驼峰命名规则
+    use-generated-keys: true  # 自动生成主键
+    default-executor-type: reuse  # 配置默认的执行器（REUSE 执行器会重用预处理语句）
+    default-statement-timeout: 600  # 事务超时时间
+
+pagehelper:  # MyBatis分页插件配置项
+  helperDialect: mysql
+  #  reasonable: true  # 分页合理性
+  support-methods-arguments: true
+  params: count=countSql
+
 logging:  # 日志配置
   level:
     com.gedoumi.tg.component.RequestInterceptor: info

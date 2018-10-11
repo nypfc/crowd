@@ -1,7 +1,7 @@
 package com.gedoumi.crowd.common.utils;
 
 import com.gedoumi.crowd.common.exception.TgException;
-import com.gedoumi.crowd.dataobj.model.User;
+import com.gedoumi.crowd.user.dataobj.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
