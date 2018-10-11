@@ -34,13 +34,23 @@ public class AdminPageController {
     }
 
     /**
+     * 积分明细页面跳转
+     *
+     * @return 积分明细页面路径
+     */
+    @GetMapping("/pointPage")
+    public String pointPage() {
+        return "/pointPage";
+    }
+
+    /**
      * 用户管理页面跳转
      *
      * @return 用户管理页面路径
      */
     @GetMapping("/userPage")
     public String userPage() {
-        return "/admin/userPage";
+        return "/userPage";
     }
 
 }

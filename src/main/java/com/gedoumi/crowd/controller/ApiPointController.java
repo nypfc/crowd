@@ -1,13 +1,11 @@
 package com.gedoumi.crowd.controller;
 
+import com.gedoumi.crowd.common.utils.ContextUtil;
 import com.gedoumi.crowd.dataobj.model.User;
 import com.gedoumi.crowd.dataobj.model.UserPointDetail;
 import com.gedoumi.crowd.dataobj.vo.ResponseObject;
-import com.gedoumi.crowd.dataobj.vo.TotalPointAndUserVO;
 import com.gedoumi.crowd.dataobj.vo.UserPointVO;
-import com.gedoumi.crowd.service.TotalPointService;
 import com.gedoumi.crowd.service.UserPointDetailService;
-import com.gedoumi.crowd.service.UserService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,11 +28,7 @@ import java.util.stream.Collectors;
 public class ApiPointController {
 
     @Resource
-    private TotalPointService totalPointService;
-    @Resource
     private UserPointDetailService userPointDetailService;
-    @Resource
-    private UserService userService;
 
     /**
      * 获取总参与人数
@@ -43,10 +37,7 @@ public class ApiPointController {
      */
     @GetMapping("/total")
     public ResponseObject totalPoint() {
-        TotalPointAndUserVO pointAndUserVO = new TotalPointAndUserVO();
-        pointAndUserVO.setTotalPoint(totalPointService.getTotalPoint());
-        pointAndUserVO.setTotalUser(userPointDetailService.getTotalPointedUser());
-        return ResponseObject.setSuccessResponse(pointAndUserVO);
+        return ResponseObject.setSuccessResponse(userPointDetailService.getTotalPointedAndTotalUser());
     }
 
     /**
@@ -56,7 +47,7 @@ public class ApiPointController {
      */
     @GetMapping("/get")
     public ResponseObject userPoint() {
-        User user = userService.getUserFromRequest();
+        User user = ContextUtil.getUserFromRequest();
         HashMap<String, Long> map = Maps.newHashMap();
         map.put("userPoint", user.getPoint());
         return ResponseObject.setSuccessResponse(map);
@@ -69,7 +60,7 @@ public class ApiPointController {
      */
     @PostMapping("/add")
     public ResponseObject addPoint() {
-        User user = userService.getUserFromRequest();
+        User user = ContextUtil.getUserFromRequest();
         userPointDetailService.addPoint(user);
         return ResponseObject.setSuccessResponse();
     }
@@ -81,7 +72,7 @@ public class ApiPointController {
      */
     @GetMapping("/list")
     public ResponseObject userPointList() {
-        User user = userService.getUserFromRequest();
+        User user = ContextUtil.getUserFromRequest();
         List<UserPointDetail> userPointDetailList = userPointDetailService.getUserPointDetailList(user.getId());
         // 封装返回数据
         return ResponseObject.setSuccessResponse(userPointDetailList.stream().map(userPointDetail -> {

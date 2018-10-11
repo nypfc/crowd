@@ -2,10 +2,10 @@ package com.gedoumi.crowd.service;
 
 import com.gedoumi.crowd.common.enums.PointEnum;
 import com.gedoumi.crowd.common.exception.TgException;
-import com.gedoumi.crowd.dao.UserDao;
 import com.gedoumi.crowd.dao.UserPointDetailDao;
 import com.gedoumi.crowd.dataobj.model.User;
 import com.gedoumi.crowd.dataobj.model.UserPointDetail;
+import com.gedoumi.crowd.dataobj.vo.TotalPointAndUserVO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,18 +28,22 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 public class UserPointDetailService {
 
     @Resource
-    private UserDao userDao;
-    @Resource
     private UserPointDetailDao userPointDetailDao;
+
     @Resource
     private TotalPointService totalPointService;
+    @Resource
+    private UserService userService;
 
     /**
      * 获取参数过助力的总用户数
      * @return 总用户数
      */
-    public Long getTotalPointedUser() {
-        return userPointDetailDao.countAllTotalUser();
+    public TotalPointAndUserVO getTotalPointedAndTotalUser() {
+        TotalPointAndUserVO pointAndUserVO = new TotalPointAndUserVO();
+        pointAndUserVO.setTotalPoint(totalPointService.getTotalPoint());
+        pointAndUserVO.setTotalUser(userPointDetailDao.countAllTotalUser());
+        return pointAndUserVO;
     }
 
     /**
@@ -52,7 +56,7 @@ public class UserPointDetailService {
         // 1.更新用户积分
         long point = PointEnum.DAY.getPoint();
         user.setPoint(user.getPoint() + point);
-        userDao.save(user);
+        userService.updateUserPoint(user);
 
         // 2.查询当日是否已经助力
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

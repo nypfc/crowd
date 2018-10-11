@@ -36,8 +36,9 @@ public class AdminRequestInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = CookieUtil.getCookieValue(AUTH_TOKEN);
         if (StringUtils.isEmpty(token)) {
-            log.warn("未获取到Token");
-            throw new TgException(BAD_REQUEST, NO_LOGIN);
+            log.error("未获取到Token");
+            response.sendRedirect("/admin/loginPage");
+            return false;
         }
         // 查询用户并将用户存入request作用域中
         AdminUser user = adminUserService.getUser(token);

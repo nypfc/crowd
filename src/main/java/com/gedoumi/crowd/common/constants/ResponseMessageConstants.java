@@ -13,6 +13,8 @@ public interface ResponseMessageConstants {
 
     String NO_LOGIN = "用户未登录";
 
+    String CREATE_USER_FAILURE = "创建用户失败";
+
     String ALREADY_POINTED = "今日已经助力";
 
     String NOT_ENOUGH_POINT = "积分不足";

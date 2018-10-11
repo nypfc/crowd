@@ -1,11 +1,11 @@
 package com.gedoumi.crowd.controller;
 
+import com.gedoumi.crowd.common.utils.ContextUtil;
 import com.gedoumi.crowd.dataobj.model.User;
 import com.gedoumi.crowd.dataobj.model.UserAwardDetail;
 import com.gedoumi.crowd.dataobj.vo.ResponseObject;
 import com.gedoumi.crowd.dataobj.vo.UserAwardVO;
 import com.gedoumi.crowd.service.UserAwardDetailService;
-import com.gedoumi.crowd.service.UserService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +29,6 @@ public class ApiAwardController {
 
     @Resource
     private UserAwardDetailService userAwardDetailService;
-    @Resource
-    private UserService userService;
 
     /**
      * 用户抽奖
@@ -39,7 +37,7 @@ public class ApiAwardController {
      */
     @PostMapping("/raffle")
     public ResponseObject raffle() {
-        User user = userService.getUserFromRequest();
+        User user = ContextUtil.getUserFromRequest();
         HashMap<String, Integer> map = Maps.newHashMap();
         map.put("result", userAwardDetailService.create(user));
         return ResponseObject.setSuccessResponse(map);
@@ -52,7 +50,7 @@ public class ApiAwardController {
      */
     @GetMapping("/list")
     public ResponseObject userAwardList() {
-        User user = userService.getUserFromRequest();
+        User user = ContextUtil.getUserFromRequest();
         List<UserAwardDetail> userAwardList = userAwardDetailService.getUserAwardList(user.getId());
         // 封装返回数据
         return ResponseObject.setSuccessResponse(userAwardList.stream().map(userAwardDetail -> {

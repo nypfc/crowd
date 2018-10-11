@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<header>
 <@common.header/>
+</header>
 
 <body>
 <div id="loginWindow" class="easyui-window" title="登录" style="width:320px;height:190px;">
@@ -10,7 +12,7 @@
         <p>密　码: <input type="password" id="password"></p>
         <div style="padding: 5px; text-align: center;">
             <a class="easyui-linkbutton" iconCls="icon-ok" onclick="submit();">Ok</a>
-            <a class="easyui-linkbutton" iconCls="icon-cancel">Cancel</a>
+            <#--<a class="easyui-linkbutton" iconCls="icon-cancel">Cancel</a>-->
         </div>
     </form>
 </div>

@@ -18,6 +18,7 @@ spring:
   freemarker:  # Freemarker配置
     charset: UTF-8
     content-type: text/html;charset=UTF-8
+#    suffix: .html
     settings:
       datetime_format: yyyy-MM-dd HH:mm:ss
       default_encoding: UTF-8

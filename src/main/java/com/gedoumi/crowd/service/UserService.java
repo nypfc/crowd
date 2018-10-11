@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-import java.util.UUID;
 
 import static com.gedoumi.crowd.common.constants.ResponseMessageConstants.NO_LOGIN;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
@@ -28,23 +26,6 @@ public class UserService {
 
     @Resource
     private UserDao userDao;
-
-    @Resource
-    private HttpServletRequest request;
-
-    /**
-     * 从Request作用域中取出用户
-     *
-     * @return 用户对象
-     */
-    public User getUserFromRequest() {
-        User user = (User) request.getAttribute("user");
-        if (user == null) {
-            log.error("未能从Request作用域中获取到user");
-            throw new TgException(BAD_REQUEST, NO_LOGIN);
-        }
-        return user;
-    }
 
     /**
      * 通过令牌获取用户
@@ -74,6 +55,16 @@ public class UserService {
         user.setLastLoginTime(new Date());
         userDao.save(user);
         return user.getToken();
+    }
+
+    /**
+     * 更新用户积分
+     *
+     * @param user 用户对象
+     */
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class})
+    public void updateUserPoint(User user) {
+        userDao.save(user);
     }
 
     /**
