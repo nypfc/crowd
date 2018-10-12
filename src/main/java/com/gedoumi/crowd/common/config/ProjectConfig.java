@@ -4,7 +4,6 @@ import com.gedoumi.crowd.component.AdminRequestInterceptor;
 import com.gedoumi.crowd.component.ApiRequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -51,20 +50,6 @@ public class ProjectConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/admin/loginPage")
                 .excludePathPatterns("/admin/login")
                 .excludePathPatterns("/easyui/**");
-    }
-
-    /**
-     * 跨域配置
-     *
-     * @param registry 跨域注册器
-     */
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedHeaders("*")
-                .allowedMethods("*")
-                .allowCredentials(true).maxAge(1800L);  // 跨域缓存以及缓存时间
     }
 
 }
