@@ -1,7 +1,7 @@
 package com.gedoumi.crowd.component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gedoumi.crowd.common.exception.TgException;
+import com.gedoumi.crowd.common.exception.CrowdException;
 import com.gedoumi.crowd.award.dataobj.vo.AwardUserVO;
 import com.gedoumi.crowd.award.dataobj.vo.MessageVO;
 import com.google.common.collect.Maps;
@@ -114,7 +114,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            throw new TgException(INTERNAL_SERVER_ERROR, PUSH_MESSAGE_ERROR);
+            throw new CrowdException(INTERNAL_SERVER_ERROR, PUSH_MESSAGE_ERROR);
         }
     }
 

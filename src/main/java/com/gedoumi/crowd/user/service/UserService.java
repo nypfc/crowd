@@ -1,6 +1,6 @@
 package com.gedoumi.crowd.user.service;
 
-import com.gedoumi.crowd.common.exception.TgException;
+import com.gedoumi.crowd.common.exception.CrowdException;
 import com.gedoumi.crowd.common.utils.LoginUtil;
 import com.gedoumi.crowd.user.dataobj.form.LoginForm;
 import com.gedoumi.crowd.user.dataobj.model.User;
@@ -36,7 +36,7 @@ public class UserService {
     public User getUser(String token) {
         return Optional.of(userMapper.queryByToken(token)).orElseThrow(() -> {
             log.error("\"Token={}\"未查询到用户", token);
-            return new TgException(BAD_REQUEST, NO_LOGIN);
+            return new CrowdException(BAD_REQUEST, NO_LOGIN);
         });
     }
 

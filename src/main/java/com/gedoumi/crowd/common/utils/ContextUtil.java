@@ -1,6 +1,6 @@
 package com.gedoumi.crowd.common.utils;
 
-import com.gedoumi.crowd.common.exception.TgException;
+import com.gedoumi.crowd.common.exception.CrowdException;
 import com.gedoumi.crowd.user.dataobj.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -48,7 +48,7 @@ public final class ContextUtil {
         User user = (User) request.getAttribute("user");
         if (user == null) {
             log.error("未能从Request作用域中获取到user");
-            throw new TgException(BAD_REQUEST, NO_LOGIN);
+            throw new CrowdException(BAD_REQUEST, NO_LOGIN);
         }
         return user;
     }

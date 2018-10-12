@@ -1,6 +1,6 @@
 package com.gedoumi.crowd.component;
 
-import com.gedoumi.crowd.common.exception.TgException;
+import com.gedoumi.crowd.common.exception.CrowdException;
 import com.gedoumi.crowd.common.utils.ResponseObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +32,8 @@ public class ApiExceptionAdvice {
      * @param ex 异常
      * @return 响应对象
      */
-    @ExceptionHandler(TgException.class)
-    public ResponseEntity<ResponseObject> tgException(TgException ex) {
+    @ExceptionHandler(CrowdException.class)
+    public ResponseEntity<ResponseObject> tgException(CrowdException ex) {
         String message = ex.getMessage();
         ResponseObject responseObject = ResponseObject.setErrorResponse(message);
         return new ResponseEntity<>(responseObject, ex.getHttpStatus());

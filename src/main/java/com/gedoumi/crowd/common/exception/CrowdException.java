@@ -11,17 +11,17 @@ import org.springframework.http.HttpStatus;
  */
 @Getter
 @Setter
-public class TgException extends RuntimeException {
+public class CrowdException extends RuntimeException {
 
     private HttpStatus httpStatus;
 
     private String message;
 
-    public TgException() {
+    public CrowdException() {
         super();
     }
 
-    public TgException(HttpStatus httpStatus, String message) {
+    public CrowdException(HttpStatus httpStatus, String message) {
         this.httpStatus = httpStatus;
         this.message = message;
     }

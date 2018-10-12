@@ -2,7 +2,7 @@ package com.gedoumi.crowd.award.service;
 
 import com.gedoumi.crowd.award.dataobj.model.UserAwardDetail;
 import com.gedoumi.crowd.award.mapper.ApiAwardMapper;
-import com.gedoumi.crowd.common.exception.TgException;
+import com.gedoumi.crowd.common.exception.CrowdException;
 import com.gedoumi.crowd.common.utils.ContextUtil;
 import com.gedoumi.crowd.user.dataobj.model.User;
 import com.github.pagehelper.PageHelper;
@@ -45,7 +45,7 @@ public class UserAwardDetailService {
         Long point = user.getPoint();
         int awardType;
         if (0L <= point && point < AWARD_TYPE_1.getPoint())
-            throw new TgException(BAD_REQUEST, NOT_ENOUGH_POINT);
+            throw new CrowdException(BAD_REQUEST, NOT_ENOUGH_POINT);
         else if (AWARD_TYPE_1.getPoint() <= point && point < AWARD_TYPE_2.getPoint())
             awardType = AWARD_TYPE_1.getType();
         else if (AWARD_TYPE_2.getPoint() <= point && point < AWARD_TYPE_3.getPoint())
@@ -59,7 +59,7 @@ public class UserAwardDetailService {
         // 查询数据库已经有相同的抽奖详情（是否重复抽奖）
         if (apiAwardMapper.countAwarded(user.getId(), awardType) != 0) {
             log.warn("userId:{}, awardType:{}, 重复抽奖", user.getId(), awardType);
-            throw new TgException(BAD_REQUEST, ALREADY_AWARDED);
+            throw new CrowdException(BAD_REQUEST, ALREADY_AWARDED);
         }
 
         // 2.抽奖并获取结果

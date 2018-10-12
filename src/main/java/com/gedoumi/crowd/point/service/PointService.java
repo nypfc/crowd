@@ -1,7 +1,7 @@
 package com.gedoumi.crowd.point.service;
 
 import com.gedoumi.crowd.common.enums.PointEnum;
-import com.gedoumi.crowd.common.exception.TgException;
+import com.gedoumi.crowd.common.exception.CrowdException;
 import com.gedoumi.crowd.common.utils.ContextUtil;
 import com.gedoumi.crowd.point.dataobj.model.UserPointDetail;
 import com.gedoumi.crowd.point.dataobj.vo.TotalPointVO;
@@ -39,14 +39,12 @@ public class PointService {
     private UserService userService;
 
     /**
-     * 获取参数过助力的总用户数
+     * 获取总积分与总参与人数
      *
      * @return 总用户数
      */
     public TotalPointVO getTotalPointedAndTotalUser() {
-        User user = ContextUtil.getUserFromRequest();
         TotalPointVO totalPointVO = new TotalPointVO();
-        totalPointVO.setUserPoint(user.getPoint());
         totalPointVO.setTotalPoint(apiPointMapper.queryTotalPoint(1L));
         totalPointVO.setTotalUser(apiPointMapper.countPointedUser());
         return totalPointVO;
@@ -74,7 +72,7 @@ public class PointService {
             e.printStackTrace();
         }
         Integer count = apiPointMapper.countPointedSameday(userId, startTime, calendar.getTime(), PointEnum.DAY.getType());
-        if (count != 0) throw new TgException(BAD_REQUEST, ALREADY_POINTED);
+        if (count != 0) throw new CrowdException(BAD_REQUEST, ALREADY_POINTED);
 
         // 3.增加积分明细
         UserPointDetail userPointDetail = new UserPointDetail();

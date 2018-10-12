@@ -1,7 +1,7 @@
 package com.gedoumi.crowd.award.service;
 
 import com.gedoumi.crowd.award.mapper.ApiAwardMapper;
-import com.gedoumi.crowd.common.exception.TgException;
+import com.gedoumi.crowd.common.exception.CrowdException;
 import com.gedoumi.crowd.component.WebSocketHandler;
 import com.gedoumi.crowd.award.dataobj.model.Award;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +42,7 @@ public class AwardService {
         // 1.查询对应奖品的库存
         if (apiAwardMapper.queryAwardStock(awardType) <= 0) {
             log.warn("{}号宝箱，库存不足", awardType);
-            throw new TgException(BAD_REQUEST, NOT_ENOUGH_STOCK);
+            throw new CrowdException(BAD_REQUEST, NOT_ENOUGH_STOCK);
         }
 
         // 2.抽奖
@@ -55,7 +55,7 @@ public class AwardService {
         // 3.中奖扣除库存
         if (award.getAwardStock() - 1 < 0) {
             log.warn("奖品ID:{}，库存不足", award.getId());
-            throw new TgException(BAD_REQUEST, NOT_ENOUGH_STOCK);
+            throw new CrowdException(BAD_REQUEST, NOT_ENOUGH_STOCK);
         }
         apiAwardMapper.updateStock(award.getId());
 

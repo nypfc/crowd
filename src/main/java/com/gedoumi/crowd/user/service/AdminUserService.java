@@ -1,6 +1,6 @@
 package com.gedoumi.crowd.user.service;
 
-import com.gedoumi.crowd.common.exception.TgException;
+import com.gedoumi.crowd.common.exception.CrowdException;
 import com.gedoumi.crowd.common.utils.HashUtil;
 import com.gedoumi.crowd.common.utils.LoginUtil;
 import com.gedoumi.crowd.user.dataobj.form.AdminLoginForm;
@@ -9,7 +9,6 @@ import com.gedoumi.crowd.user.mapper.AdminUserMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.Optional;
 
 import static com.gedoumi.crowd.common.constants.ResponseMessageConstants.USERNAME_OR_PASSWORD_ERROR;
@@ -47,10 +46,10 @@ public class AdminUserService {
         String loginUsername = adminLoginForm.getUsername();
         String loginPassword = adminLoginForm.getPassword();
         AdminUser user = Optional.of(adminUserMapper.queryByUsername(loginUsername))
-                .orElseThrow(() -> new TgException(UNAUTHORIZED, USERNAME_OR_PASSWORD_ERROR));
+                .orElseThrow(() -> new CrowdException(UNAUTHORIZED, USERNAME_OR_PASSWORD_ERROR));
         String encryPassword = HashUtil.encryPassword(loginUsername, loginPassword);
         if (!user.getPassword().equals(encryPassword)) {
-            throw new TgException(UNAUTHORIZED, USERNAME_OR_PASSWORD_ERROR);
+            throw new CrowdException(UNAUTHORIZED, USERNAME_OR_PASSWORD_ERROR);
         }
 
         // 2.更新令牌以及最后登录时间

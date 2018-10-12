@@ -1,6 +1,6 @@
 package com.gedoumi.crowd.component;
 
-import com.gedoumi.crowd.common.exception.TgException;
+import com.gedoumi.crowd.common.exception.CrowdException;
 import com.gedoumi.crowd.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
@@ -35,7 +35,7 @@ public class ApiRequestInterceptor implements HandlerInterceptor {
         String token = request.getHeader(AUTH_TOKEN);
         if (StringUtils.isEmpty(token)) {
             log.warn("未获取到Token");
-            throw new TgException(BAD_REQUEST, NO_LOGIN);
+            throw new CrowdException(BAD_REQUEST, NO_LOGIN);
         }
         // 查询用户并将用户存入request作用域中
         request.setAttribute("user", userService.getUser(token));

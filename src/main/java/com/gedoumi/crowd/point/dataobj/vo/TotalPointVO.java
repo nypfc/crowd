@@ -11,11 +11,6 @@ import lombok.Data;
 public class TotalPointVO {
 
     /**
-     * 当前用户积分
-     */
-    private Long userPoint;
-
-    /**
      * 总积分
      */
     private Long totalPoint;
