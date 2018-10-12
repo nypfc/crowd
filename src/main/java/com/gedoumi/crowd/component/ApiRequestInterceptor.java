@@ -34,7 +34,7 @@ public class ApiRequestInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String token = request.getHeader(AUTH_TOKEN);
         if (StringUtils.isEmpty(token)) {
-            log.warn("未获取到Token");
+            log.warn("Token:{}，未获取到Token", token);
             throw new CrowdException(BAD_REQUEST, NO_LOGIN);
         }
         // 查询用户并将用户存入request作用域中

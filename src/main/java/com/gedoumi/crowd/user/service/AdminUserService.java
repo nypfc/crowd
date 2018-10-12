@@ -45,7 +45,7 @@ public class AdminUserService {
         // 1.查询用户并对比密码
         String loginUsername = adminLoginForm.getUsername();
         String loginPassword = adminLoginForm.getPassword();
-        AdminUser user = Optional.of(adminUserMapper.queryByUsername(loginUsername))
+        AdminUser user = Optional.ofNullable(adminUserMapper.queryByUsername(loginUsername))
                 .orElseThrow(() -> new CrowdException(UNAUTHORIZED, USERNAME_OR_PASSWORD_ERROR));
         String encryPassword = HashUtil.encryPassword(loginUsername, loginPassword);
         if (!user.getPassword().equals(encryPassword)) {

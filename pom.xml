@@ -25,6 +25,7 @@
         <pagehelper-spring-boot-starter>1.2.5</pagehelper-spring-boot-starter>
         <druid>1.1.11</druid>
         <guava>23.0</guava>
+        <cors-filter>2.6</cors-filter>
         <commons-lang3>3.8.1</commons-lang3>
         <java.version>1.8</java.version>
     </properties>

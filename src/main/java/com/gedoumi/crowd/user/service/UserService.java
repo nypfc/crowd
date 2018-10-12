@@ -34,7 +34,7 @@ public class UserService {
      * @return 用户对象
      */
     public User getUser(String token) {
-        return Optional.of(userMapper.queryByToken(token)).orElseThrow(() -> {
+        return Optional.ofNullable(userMapper.queryByToken(token)).orElseThrow(() -> {
             log.error("\"Token={}\"未查询到用户", token);
             return new CrowdException(BAD_REQUEST, NO_LOGIN);
         });
