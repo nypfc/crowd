@@ -4,7 +4,7 @@ import com.gedoumi.crowd.common.enums.PointEnum;
 import com.gedoumi.crowd.common.exception.TgException;
 import com.gedoumi.crowd.common.utils.ContextUtil;
 import com.gedoumi.crowd.point.dataobj.model.UserPointDetail;
-import com.gedoumi.crowd.point.dataobj.vo.TotalPointAndUserVO;
+import com.gedoumi.crowd.point.dataobj.vo.TotalPointVO;
 import com.gedoumi.crowd.point.mapper.ApiPointMapper;
 import com.gedoumi.crowd.user.dataobj.dto.PointDTO;
 import com.gedoumi.crowd.user.dataobj.model.User;
@@ -43,11 +43,13 @@ public class PointService {
      *
      * @return 总用户数
      */
-    public TotalPointAndUserVO getTotalPointedAndTotalUser() {
-        TotalPointAndUserVO pointAndUserVO = new TotalPointAndUserVO();
-        pointAndUserVO.setTotalPoint(apiPointMapper.queryTotalPoint(1L));
-        pointAndUserVO.setTotalUser(apiPointMapper.countPointedUser());
-        return pointAndUserVO;
+    public TotalPointVO getTotalPointedAndTotalUser() {
+        User user = ContextUtil.getUserFromRequest();
+        TotalPointVO totalPointVO = new TotalPointVO();
+        totalPointVO.setUserPoint(user.getPoint());
+        totalPointVO.setTotalPoint(apiPointMapper.queryTotalPoint(1L));
+        totalPointVO.setTotalUser(apiPointMapper.countPointedUser());
+        return totalPointVO;
     }
 
     /**

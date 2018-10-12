@@ -3,12 +3,17 @@ package com.gedoumi.crowd.point.dataobj.vo;
 import lombok.Data;
 
 /**
- * 总积分与总助力用户量
+ * 积分数据
  *
  * @author Minced
  */
 @Data
-public class TotalPointAndUserVO {
+public class TotalPointVO {
+
+    /**
+     * 当前用户积分
+     */
+    private Long userPoint;
 
     /**
      * 总积分

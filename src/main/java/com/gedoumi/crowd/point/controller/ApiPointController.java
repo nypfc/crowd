@@ -1,17 +1,13 @@
 package com.gedoumi.crowd.point.controller;
 
-import com.gedoumi.crowd.common.utils.ContextUtil;
 import com.gedoumi.crowd.common.utils.ResponseObject;
 import com.gedoumi.crowd.point.dataobj.model.UserPointDetail;
 import com.gedoumi.crowd.point.dataobj.vo.UserPointVO;
 import com.gedoumi.crowd.point.service.PointService;
-import com.gedoumi.crowd.user.dataobj.model.User;
-import com.google.common.collect.Maps;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,26 +24,13 @@ public class ApiPointController {
     private PointService pointService;
 
     /**
-     * 获取总参与人数
+     * 获取总积分与总参与人数
      *
      * @return ResponseObject
      */
     @GetMapping("/total")
     public ResponseObject totalPoint() {
         return ResponseObject.setSuccessResponse(pointService.getTotalPointedAndTotalUser());
-    }
-
-    /**
-     * 获取用户当前积分
-     *
-     * @return ResponseObject
-     */
-    @GetMapping("/get")
-    public ResponseObject userPoint() {
-        User user = ContextUtil.getUserFromRequest();
-        HashMap<String, Long> map = Maps.newHashMap();
-        map.put("userPoint", user.getPoint());
-        return ResponseObject.setSuccessResponse(map);
     }
 
     /**
